@@ -6,7 +6,6 @@ Easily add a chat bubble to your website with a single `script` tag. A simple an
 
 ## Built with ChatGPT (GPT-4)
 
-About 95% of the code for this widget is written by GPT-4, I just edited and adjust a few things
 
 
 <br>

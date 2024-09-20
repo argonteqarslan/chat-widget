@@ -40,7 +40,7 @@
   const chatWidgetContainer = document.createElement('div');
   chatWidgetContainer.id = 'chat-widget-container';
   document.body.appendChild(chatWidgetContainer);
-  
+
   // Inject the HTML
   chatWidgetContainer.innerHTML = `
     <div id="chat-bubble" class="w-16 h-16 bg-gray-800 rounded-full flex items-center justify-center cursor-pointer text-3xl">
@@ -50,7 +50,10 @@
     </div>
     <div id="chat-popup" class="hidden absolute bottom-20 right-0 w-96 bg-white rounded-md shadow-md flex flex-col transition-all text-sm">
       <div id="chat-header" class="flex justify-between items-center p-4 bg-gray-800 text-white rounded-t-md">
-        <h3 class="m-0 text-lg">Chat Widget by GPT4</h3>
+        <div class="flex items-center">
+          <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8bWFufGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=500&q=60" alt="Logo" class="w-8 h-8 mr-2 rounded-full" />
+          <h3 class="m-0 text-lg">Interact</h3>
+        </div>
         <button id="close-popup" class="bg-transparent border-none text-white cursor-pointer">
           <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -63,13 +66,14 @@
           <input type="text" id="chat-input" class="flex-1 border border-gray-300 rounded-md px-4 py-2 outline-none w-3/4" placeholder="Type your message...">
           <button id="chat-submit" class="bg-gray-800 text-white rounded-md px-4 py-2 cursor-pointer">Send</button>
         </div>
-        <div class="flex text-center text-xs pt-4">
-          <span class="flex-1">Prompted by <a href="https://twitter.com/anantrp" target="_blank" class="text-indigo-600">@anantrp</a></span>
-        </div>
+
       </div>
     </div>
   `;
 
+//   <div class="flex text-center text-xs pt-4">
+//   <span class="flex-1">Prompted by <a href="https://twitter.com/anantrp" target="_blank" class="text-indigo-600">@anantrp</a></span>
+// </div>
   // Add event listeners
   const chatInput = document.getElementById('chat-input');
   const chatSubmit = document.getElementById('chat-submit');
@@ -79,10 +83,10 @@
   const closePopup = document.getElementById('close-popup');
 
   chatSubmit.addEventListener('click', function() {
-    
+
     const message = chatInput.value.trim();
     if (!message) return;
-    
+
     chatMessages.scrollTop = chatMessages.scrollHeight;
 
     chatInput.value = '';
@@ -111,12 +115,12 @@
     if (!chatPopup.classList.contains('hidden')) {
       document.getElementById('chat-input').focus();
     }
-  }  
+  }
 
   function onUserRequest(message) {
     // Handle user request here
     console.log('User request:', message);
-  
+
     // Display user message
     const messageElement = document.createElement('div');
     messageElement.className = 'flex justify-end mb-3';
@@ -127,15 +131,15 @@
     `;
     chatMessages.appendChild(messageElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
-  
+
     chatInput.value = '';
-  
+
     // Reply to the user
     setTimeout(function() {
       reply('Hello! This is a sample reply.');
     }, 1000);
   }
-  
+
   function reply(message) {
     const chatMessages = document.getElementById('chat-messages');
     const replyElement = document.createElement('div');
@@ -148,5 +152,5 @@
     chatMessages.appendChild(replyElement);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
-  
+
 })();
